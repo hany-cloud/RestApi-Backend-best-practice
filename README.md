@@ -3,11 +3,11 @@ Models a simple Restful service that manages some sample resources just for expl
 
 ## Refrences
     * main: 
-            https://spring.io/guides/tutorials/rest/
-    * https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/
-    * https://www.baeldung.com/spring-boot-jasypt
-    * https://www.baeldung.com/spring-boot-bean-validation
-    * https://opencredo.com/blogs/hal-hypermedia-api-spring-hateoas/
+            [https://spring.io/guides/tutorials/rest/](https://spring.io/guides/tutorials/rest/)
+    * [https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/](https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/)
+    * [https://www.baeldung.com/spring-boot-jasypt](https://www.baeldung.com/spring-boot-jasypt)
+    * [https://www.baeldung.com/spring-boot-bean-validation](https://www.baeldung.com/spring-boot-bean-validation)
+    * [https://opencredo.com/blogs/hal-hypermedia-api-spring-hateoas/](https://opencredo.com/blogs/hal-hypermedia-api-spring-hateoas/)
 
  ## ToDo List
     * Add order due date to order entity.
