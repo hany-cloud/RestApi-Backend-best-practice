@@ -1,8 +1,11 @@
-package net.hka.examples.restapi.business.dto;
+package net.hka.examples.restapi.web.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import javax.persistence.Embedded;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -17,36 +20,39 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import net.hka.common.web.multipart.file.storage.payload.FileResource;
-import net.hka.examples.restapi.business.domain.Employee;
+import net.hka.examples.restapi.business.domain.OrderStatus;
 
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "employee_document")
-@Relation(collectionRelation = "employee_documents")
+@JsonRootName(value = "order")
+@Relation(collectionRelation = "orders")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EmployeeDocumentDto extends RepresentationModel<EmployeeDocumentDto> {
+public class OrderDto extends RepresentationModel<OrderDto> {
 
 	private Long id;
 	
-	@Embedded
-    private FileResource fileResource;
+	@NotBlank 
+	@Size(min = 2, max = 100)
+	private String description;
 	
-	@JsonIgnore
-	private Employee employee;
+	@NotNull
+	private OrderStatus status;
+	
+	private LocalDate dueTo;
 	
 	@Setter(AccessLevel.PRIVATE)
+	@JsonIgnore
 	private LocalDateTime createdAt;
-	
+
 	@Override
 	public String toString() {
 
 		return MoreObjects.toStringHelper(this)
 	              .add("id", id)
-	              .add("fileResource", fileResource)
-	              .add("employee", employee)
-	              .add("createdAt", createdAt)
+	              .add("description", description)
+	              .add("status", status)  
+	              .add("dueTo", dueTo)  
 	              .toString();
 	}
 }

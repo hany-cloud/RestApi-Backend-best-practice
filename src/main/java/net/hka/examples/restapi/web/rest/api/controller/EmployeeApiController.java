@@ -26,10 +26,10 @@ import net.hka.common.web.multipart.file.storage.payload.FileResource;
 import net.hka.common.web.multipart.file.storage.service.FileStorageService;
 import net.hka.examples.restapi.business.domain.Employee;
 import net.hka.examples.restapi.business.domain.EmployeeDocument;
-import net.hka.examples.restapi.business.dto.EmployeeDto;
 import net.hka.examples.restapi.business.exception.EmployeeNotFoundException;
 import net.hka.examples.restapi.business.repository.EmployeeDocumentRepository;
 import net.hka.examples.restapi.business.repository.EmployeeRepository;
+import net.hka.examples.restapi.web.dto.EmployeeDto;
 import net.hka.examples.restapi.web.rest.api.EmployeeAssembler;
 
 @RestController

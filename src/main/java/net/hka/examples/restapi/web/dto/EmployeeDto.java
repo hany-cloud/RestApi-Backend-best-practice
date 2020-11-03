@@ -1,11 +1,9 @@
-package net.hka.examples.restapi.business.dto;
+package net.hka.examples.restapi.web.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -20,39 +18,43 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import net.hka.examples.restapi.business.domain.OrderStatus;
+import net.hka.common.web.multipart.file.storage.payload.SimpleAddress;
 
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "order")
-@Relation(collectionRelation = "orders")
+@JsonRootName(value = "employee")
+@Relation(collectionRelation = "employees")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderDto extends RepresentationModel<OrderDto> {
+public class EmployeeDto extends RepresentationModel<EmployeeDto> {
 
 	private Long id;
 	
-	@NotBlank 
-	@Size(min = 2, max = 100)
-	private String description;
+	@NotBlank
+	private String firstName;
 	
-	@NotNull
-	private OrderStatus status;
+	@NotBlank
+	private String lastName;
+	private String name;
 	
-	private LocalDate dueTo;
+	private SimpleAddress address;
 	
 	@Setter(AccessLevel.PRIVATE)
 	@JsonIgnore
 	private LocalDateTime createdAt;
-
+		
+	private List<EmployeeDocumentDto> documents;
+	
 	@Override
 	public String toString() {
 
 		return MoreObjects.toStringHelper(this)
 	              .add("id", id)
-	              .add("description", description)
-	              .add("status", status)  
-	              .add("dueTo", dueTo)  
+	              .add("firstName", firstName)
+	              .add("lastName", lastName)
+	              .add("name", name)
+	              .add("address", address)
+	              .add("documents", documents)
 	              .toString();
 	}
 }

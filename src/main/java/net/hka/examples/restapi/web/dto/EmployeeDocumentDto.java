@@ -1,9 +1,8 @@
-package net.hka.examples.restapi.business.dto;
+package net.hka.examples.restapi.web.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Embedded;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -18,43 +17,36 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import net.hka.common.web.multipart.file.storage.payload.SimpleAddress;
+import net.hka.common.web.multipart.file.storage.payload.FileResource;
+import net.hka.examples.restapi.business.domain.Employee;
 
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = false)
-@JsonRootName(value = "employee")
-@Relation(collectionRelation = "employees")
+@JsonRootName(value = "employee_document")
+@Relation(collectionRelation = "employee_documents")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EmployeeDto extends RepresentationModel<EmployeeDto> {
+public class EmployeeDocumentDto extends RepresentationModel<EmployeeDocumentDto> {
 
 	private Long id;
 	
-	@NotBlank
-	private String firstName;
+	@Embedded
+    private FileResource fileResource;
 	
-	@NotBlank
-	private String lastName;
-	private String name;
-	
-	private SimpleAddress address;
+	@JsonIgnore
+	private Employee employee;
 	
 	@Setter(AccessLevel.PRIVATE)
-	@JsonIgnore
 	private LocalDateTime createdAt;
-		
-	private List<EmployeeDocumentDto> documents;
 	
 	@Override
 	public String toString() {
 
 		return MoreObjects.toStringHelper(this)
 	              .add("id", id)
-	              .add("firstName", firstName)
-	              .add("lastName", lastName)
-	              .add("name", name)
-	              .add("address", address)
-	              .add("documents", documents)
+	              .add("fileResource", fileResource)
+	              .add("employee", employee)
+	              .add("createdAt", createdAt)
 	              .toString();
 	}
 }
