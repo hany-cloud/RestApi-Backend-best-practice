@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.hka.common.web.rest.api.response.ApiErrorCode;
-import net.hka.examples.restapi.business.domain.Order;
-import net.hka.examples.restapi.business.domain.OrderStatus;
 import net.hka.examples.restapi.business.exception.InvalidOrderStatusModificationException;
 import net.hka.examples.restapi.business.exception.OrderNotFoundException;
-import net.hka.examples.restapi.business.repository.OrderRepository;
+import net.hka.examples.restapi.domain.Order;
+import net.hka.examples.restapi.domain.OrderStatus;
+import net.hka.examples.restapi.domain.repository.OrderRepository;
 import net.hka.examples.restapi.web.rest.api.OrderAssembler;
 
 @RestController

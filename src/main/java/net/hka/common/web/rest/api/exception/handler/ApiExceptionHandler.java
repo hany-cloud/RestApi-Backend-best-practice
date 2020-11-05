@@ -37,14 +37,16 @@ public class ApiExceptionHandler {
 
 	/**
 	 * handle {@link TransactionSystemException}
-	 * @param e TransactionSystemException
-	 * @return {@link ResponseEntity} showing all errors for violation of model annotation constraints
 	 * 
-	 * * - {@link Valid}, {@link Validated} binding error occur
+	 * @param e TransactionSystemException
+	 * @return {@link ResponseEntity} showing all errors for violation of model
+	 *         annotation constraints
+	 * 
+	 *         * - {@link Valid}, {@link Validated} binding error occur
 	 */
 	@ExceptionHandler(TransactionSystemException.class)
 	protected ResponseEntity<ApiErrorResponse> handlePersistenceException(final TransactionSystemException e) {
-		
+
 		logger.warn("handleMethodArgumentNotValidException : {}", e.getMessage());
 
 		Throwable cause = ((TransactionSystemException) e).getRootCause();
@@ -53,15 +55,15 @@ public class ApiExceptionHandler {
 			ConstraintViolationException consEx = (ConstraintViolationException) cause;
 			final List<ApiFieldError> errors = new ArrayList<>();
 			for (final ConstraintViolation<?> violation : consEx.getConstraintViolations()) {
-				ApiFieldError error = new ApiFieldError(violation.getPropertyPath().toString(), 
-						violation.getInvalidValue() == null ? "null" : violation.getInvalidValue().toString(), 
+				ApiFieldError error = new ApiFieldError(violation.getPropertyPath().toString(),
+						violation.getInvalidValue() == null ? "null" : violation.getInvalidValue().toString(),
 						violation.getMessage());
 				errors.add(error);
 			}
 
 			return createBadRequestResponse(errors);
 		}
-		
+
 		return new ResponseEntity<>(ApiErrorResponse.createException(ApiErrorCode.METHOD_NOT_ALLOWED),
 				HttpStatus.METHOD_NOT_ALLOWED);
 	}
@@ -74,7 +76,7 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	protected ResponseEntity<ApiErrorResponse> handleMethodArgumentNotValidException(
 			final MethodArgumentNotValidException e) {
-		
+
 		logger.warn("handleMethodArgumentNotValidException : {}", e.getMessage());
 
 		return createBadRequestResponse(e.getBindingResult());
@@ -87,12 +89,12 @@ public class ApiExceptionHandler {
 	 */
 	@ExceptionHandler(BindException.class)
 	protected ResponseEntity<ApiErrorResponse> handleBindException(final BindException e) {
-		
+
 		logger.warn("handleBindException : {}", e.getMessage());
 
 		return createBadRequestResponse(e.getBindingResult());
 	}
-	
+
 	/**
 	 * handle {@link MethodArgumentTypeMismatchException}
 	 *
@@ -115,7 +117,8 @@ public class ApiExceptionHandler {
 	 * handle {@link HttpMessageConversionException}
 	 */
 	@ExceptionHandler(HttpMessageConversionException.class)
-	protected ResponseEntity<ApiErrorResponse> handleHttpMessageConversionException(final HttpMessageConversionException e) {
+	protected ResponseEntity<ApiErrorResponse> handleHttpMessageConversionException(
+			final HttpMessageConversionException e) {
 
 		logger.warn("handleHttpMessageConversionException : {}", e.getMessage());
 
@@ -177,27 +180,30 @@ public class ApiExceptionHandler {
 	 */
 	@ExceptionHandler(Exception.class)
 	protected ResponseEntity<ApiErrorResponse> handleException(final Exception e) {
-		
+
 		logger.warn("handleException", e);
 
+		final List<ApiFieldError> errors = new ArrayList<>();
+		errors.add(new ApiFieldError(e.getClass().toString(), e.getClass().getTypeName(), e.getLocalizedMessage()));
+
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-				.body(ApiErrorResponse.createException(ApiErrorCode.INTERNAL_SERVER_ERROR));
+				.body(ApiErrorResponse.createException(ApiErrorCode.INTERNAL_SERVER_ERROR, errors));
 	}
 
 	// ============ private
 
 	private ResponseEntity<ApiErrorResponse> createBadRequestResponse(final BindingResult result) {
-		
+
 		return ResponseEntity.badRequest().body(ApiErrorResponse.createException(ApiErrorCode.BAD_REQUEST, result));
 	}
-	
+
 	private ResponseEntity<ApiErrorResponse> createBadRequestResponse(final List<ApiFieldError> errors) {
-		
+
 		return ResponseEntity.badRequest().body(ApiErrorResponse.createException(ApiErrorCode.BAD_REQUEST, errors));
 	}
-	
+
 	private ResponseEntity<ApiErrorResponse> createBadRequestResponse() {
-		
+
 		return ResponseEntity.badRequest().body(ApiErrorResponse.createException(ApiErrorCode.BAD_REQUEST));
 	}
 }

@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.web.dto;
+package net.hka.examples.restapi.business.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import net.hka.examples.restapi.business.domain.OrderStatus;
+import net.hka.examples.restapi.domain.OrderStatus;
 
 @Data
 @Builder

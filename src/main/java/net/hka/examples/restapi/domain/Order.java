@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.business.domain;
+package net.hka.examples.restapi.domain;
 
 import java.time.LocalDate;
 
@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import net.hka.common.domain.AuditTimeBaseEntity;
+import net.hka.common.model.AuditTimeBaseModel;
 
 @Entity
 @Table(name = "CUSTOMER_ORDER")
@@ -25,7 +25,7 @@ import net.hka.common.domain.AuditTimeBaseEntity;
 @Setter(AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class Order extends AuditTimeBaseEntity {
+public class Order extends AuditTimeBaseModel {
 
 	private @Id @GeneratedValue Long id;
 

@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.hka.common.web.multipart.file.storage.payload.SimpleAddress;
-import net.hka.examples.restapi.business.domain.Employee;
-import net.hka.examples.restapi.business.domain.Order;
-import net.hka.examples.restapi.business.domain.OrderStatus;
-import net.hka.examples.restapi.business.repository.EmployeeRepository;
-import net.hka.examples.restapi.business.repository.OrderRepository;
+import net.hka.common.model.vo.SimpleAddress;
+import net.hka.examples.restapi.domain.Employee;
+import net.hka.examples.restapi.domain.Order;
+import net.hka.examples.restapi.domain.OrderStatus;
+import net.hka.examples.restapi.domain.repository.EmployeeRepository;
+import net.hka.examples.restapi.domain.repository.OrderRepository;
 
 @Configuration
 @NoArgsConstructor

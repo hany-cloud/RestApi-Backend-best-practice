@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.web.dto;
+package net.hka.examples.restapi.business.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,7 +18,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import net.hka.common.web.multipart.file.storage.payload.SimpleAddress;
+import net.hka.common.model.vo.SimpleAddress;
 
 @Data
 @Builder

@@ -1,4 +1,4 @@
-package net.hka.common.domain;
+package net.hka.common.model;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter(AccessLevel.PROTECTED)
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class AuditTimeBaseEntity {
+public class AuditTimeBaseModel {
 
 	@CreatedDate
 	@Column(nullable = false)

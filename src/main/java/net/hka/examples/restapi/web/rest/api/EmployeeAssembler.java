@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import com.google.common.base.Preconditions;
 
 import net.hka.common.web.rest.api.assembler.ApiEntityAssembler;
-import net.hka.examples.restapi.business.domain.Employee;
-import net.hka.examples.restapi.business.domain.EmployeeDocument;
-import net.hka.examples.restapi.web.dto.EmployeeDto;
+import net.hka.examples.restapi.business.dto.EmployeeDto;
+import net.hka.examples.restapi.domain.Employee;
+import net.hka.examples.restapi.domain.EmployeeDocument;
 import net.hka.examples.restapi.web.rest.api.controller.EmployeeApiController;
 
 @Component
@@ -39,8 +39,11 @@ public class EmployeeAssembler
 				.name(new StringBuilder().append(entity.getFirstName()).append(" ").append(entity.getLastName())
 						.toString())
 				.address(entity.getAddress()).createdAt(entity.getCreatedAt())
-				.documents(entity.getDocuments().stream()
-						.map(document -> documentAssembler.toModel(document)).collect(Collectors.toList()))
+				.documents(
+						entity.getDocuments() != null ? 
+								entity.getDocuments().stream()
+									.map(document -> documentAssembler.toModel(document)).collect(Collectors.toList()) : null
+				)
 				.build();
 
 		// Unconditional links to single-item resource and aggregate root

@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.business.domain;
+package net.hka.examples.restapi.domain;
 
 public enum OrderStatus {
 	

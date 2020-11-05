@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.business.domain;
+package net.hka.examples.restapi.domain;
 
 import java.util.List;
 
@@ -16,8 +16,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import net.hka.common.domain.AuditTimeBaseEntity;
-import net.hka.common.web.multipart.file.storage.payload.SimpleAddress;
+import net.hka.common.model.AuditTimeBaseModel;
+import net.hka.common.model.vo.SimpleAddress;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,7 +25,7 @@ import net.hka.common.web.multipart.file.storage.payload.SimpleAddress;
 @Setter(AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class Employee extends AuditTimeBaseEntity {
+public class Employee extends AuditTimeBaseModel {
 
 	private @Id @GeneratedValue Long id;
 	

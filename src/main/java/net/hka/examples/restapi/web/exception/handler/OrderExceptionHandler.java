@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.business.exception.handler;
+package net.hka.examples.restapi.web.exception.handler;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

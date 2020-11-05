@@ -1,4 +1,4 @@
-package net.hka.examples.restapi.business.domain;
+package net.hka.examples.restapi.domain;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import net.hka.common.domain.AuditTimeBaseEntity;
+import net.hka.common.model.AuditTimeBaseModel;
 import net.hka.common.web.multipart.file.storage.payload.FileResource;
 
 @Entity
@@ -25,14 +25,15 @@ import net.hka.common.web.multipart.file.storage.payload.FileResource;
 @Setter(AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class EmployeeDocument extends AuditTimeBaseEntity {
+public class EmployeeDocument extends AuditTimeBaseModel {
 
 	private @Id @GeneratedValue Long id;
 	
 	@Embedded
     private FileResource fileResource;
-		
-	@ManyToOne(fetch = FetchType.EAGER) // fetch type eager is the default fetch for the ManyToOne
+	
+	// fetch type eager is the default fetch for the ManyToOne, and employee document cannot exist without related employee
+	@ManyToOne(fetch = FetchType.EAGER, optional = false) 
 	@JoinColumn(name = "employee_id", referencedColumnName = "id")
 	private Employee employee;
 	

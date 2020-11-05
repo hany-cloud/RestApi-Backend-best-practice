@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 import com.google.common.base.Preconditions;
 
 import net.hka.common.web.rest.api.assembler.ApiEntityAssembler;
-import net.hka.examples.restapi.business.domain.Employee;
-import net.hka.examples.restapi.business.domain.EmployeeDocument;
-import net.hka.examples.restapi.web.dto.EmployeeDocumentDto;
-import net.hka.examples.restapi.web.dto.EmployeeDto;
+import net.hka.examples.restapi.business.dto.EmployeeDocumentDto;
+import net.hka.examples.restapi.business.dto.EmployeeDto;
+import net.hka.examples.restapi.domain.Employee;
+import net.hka.examples.restapi.domain.EmployeeDocument;
 
 @Component
 public class EmployeeDocumentAssembler implements RepresentationModelAssembler<EmployeeDocument, EmployeeDocumentDto>,

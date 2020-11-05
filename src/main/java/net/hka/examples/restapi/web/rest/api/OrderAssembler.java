@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import com.google.common.base.Preconditions;
 
 import net.hka.common.web.rest.api.assembler.ApiEntityAssembler;
-import net.hka.examples.restapi.business.domain.Order;
-import net.hka.examples.restapi.business.domain.OrderStatus;
-import net.hka.examples.restapi.web.dto.OrderDto;
+import net.hka.examples.restapi.business.dto.OrderDto;
+import net.hka.examples.restapi.domain.Order;
+import net.hka.examples.restapi.domain.OrderStatus;
 import net.hka.examples.restapi.web.rest.api.controller.OrderApiController;
 
 @Component

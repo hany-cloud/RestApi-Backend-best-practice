@@ -1,4 +1,4 @@
-package net.hka.common.web.multipart.file.storage.payload;
+package net.hka.common.model.vo;
 
 import javax.persistence.Embeddable;
 
@@ -30,5 +30,4 @@ public class SimpleAddress {
     public static SimpleAddress createAddress(String city, String street, String zipCode) {
         return new SimpleAddress(city, street, zipCode);
     }
-
 }
